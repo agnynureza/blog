@@ -9,9 +9,8 @@ module.exports = {
         const hash = bcrypt.hashSync(req.body.password, salt);
         user
         .create({
-            name     : req.body.name,
-            email    : req.body.email,
-            password : hash,
+            username : req.body.username,
+            password : hash
         },(err,data)=>{
             if(err){
                 res.status(500).json({
@@ -28,7 +27,7 @@ module.exports = {
     },
     signIn:(req,res)=>{
         user
-        .findOne({name:req.body.name})
+        .findOne({username:req.body.username})
         .exec()
         .then(data=>{
             let passwordCheck = bcrypt.compareSync(req.body.password, data.password);
@@ -37,35 +36,20 @@ module.exports = {
                 res.status(200).json({
                     message : `login success`,
                     data:data,
-                    token:token 
+                    isLogin : true
                 })
             }else{
-                res.status(400).json({
+                res.status(401).json({
                     message:'password incorrect',
                     data:{}
                 })
             }
         }).catch(err=>{
+            console.log(err)
             res.status(400).json({
                 message:`username incorrect `,
                 data:{}
             })
         })
-    },
-    updateUser: (req,res)=>{
-        let id = req.params.id
-        user
-        .findOneAndUpdate({_id:id},{$set:req.body},{upset:true,new:true})
-        .then(data=>{
-            res.status(201).json({
-                message: 'update user data success',
-                data:data
-            })
-        }).catch(err=>{
-            res.status(400).json({
-                message:`erorr update data ${err.message}`,
-                data: {}
-            })
-        })
-    },
+    }
 }

@@ -1,0 +1,61 @@
+<template>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <router-link :to="{name:'home'}" >
+      <a class="navbar-brand" href="#">Inspiloger</a>
+    </router-link>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <router-link :to="{name:'home'}">
+           <a class="nav-link">Home</a>
+          </router-link>
+        </li>
+        <li class="nav-item" v-if="isLogin == true">
+          <router-link :to="{name:'create'}">
+           <a class="nav-link">Create blog</a>
+          </router-link>
+        </li>
+      </ul>
+     <ul class="nav navbar-nav navbar-right mr-3">
+        <li class="dropdown" v-if="isLogin == false"><a class="dropdown-toggle" data-toggle="dropdown" href="#">Login <span class="glyphicon glyphicon-log-in"></span></a>
+          <div class="dropdown-menu">
+            <div class="form container-fluid">
+              <div class="form-group">
+                <label for="usr">Username:</label>
+                <input type="text" class="form-control" id="usr" v-model="username">
+              </div>
+              <div class="form-group">
+                <label for="pwd">Password:</label>
+                <input type="password" class="form-control" id="pwd" v-model="password">
+              </div>
+              <button type="button" id="btnLogin" class="btn btn-block" @click="login">Login</button>
+            </div>
+            <div class="container-fluid">
+              <br>
+              <a class="small" href="#">Forgot password?</a>
+            </div>
+          </div>
+        </li>
+        <li v-if="isLogin == true">
+          <button type="button" class="btn btn-danger">Logout</button>
+        </li>
+      </ul>
+    </div>
+  </nav>
+</template>
+
+
+
+
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script> 
+   <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+
+
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css"><script src="//maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+  <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>

@@ -100,7 +100,7 @@ describe('API /users ',()=>{
     describe('Get /users/show',()=>{
         it('show user article',done=>{
             chai.request(app)
-            .get(`/users/show/${userId}`)
+            .get(`/users/show`)
             .set('token', token)
             .end((err,res)=>{
                 expect(res).to.have.status(200)
@@ -129,16 +129,17 @@ describe('API /users ',()=>{
             })
         })
     })
-    describe('Delete /users/delete',()=>{
-        it('delete article',done=>{
-            chai.request(app)
-            .delete(`/users/delete/${articleId}`)
-            .set('token', token)
-            .end((err,res)=>{
-                expect(res).to.have.status(201)
-                expect(res.body).to.be.an('object')
-                done()
-            })
-        })
-    })
+    //delete article by userid
+    // describe('Delete /users/delete',()=>{
+    //     it('delete article',done=>{
+    //         chai.request(app)
+    //         .delete(`/users/delete/${articleId}`)
+    //         .set('token', token)
+    //         .end((err,res)=>{
+    //             expect(res).to.have.status(201)
+    //             expect(res.body).to.be.an('object')
+    //             done()
+    //         })
+    //     })
+    // })
 })

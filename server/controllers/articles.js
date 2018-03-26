@@ -6,8 +6,7 @@ module.exports = {
         article
         .create({
             title   : req.body.title,
-            content : req.body.content,
-            user_id : req.body.user_id
+            content : req.body.content
         },(err,data)=>{
             if(err){
                 res.status(500).json({
@@ -23,11 +22,26 @@ module.exports = {
         })
     },
     showArticles : (req,res)=>{
+        article
+        .find()
+        .exec()
+        .then(data=>{
+            res.status(200).json({
+                message : 'success show article data',
+                data:data
+            })
+        }).catch(err=>{
+            res.status(400).json({
+                message : `sorry error load articles data `,
+                data: {}
+            })
+        })
+    },
+    showContent : (req,res)=>{
+        console.log('masuk')
         let id = req.params.id
         article
-        .find({user_id:id})
-        .populate('user_id')
-        .exec()
+        .findById({_id:id})
         .then(data=>{
             res.status(200).json({
                 message : 'success show article data',
@@ -43,7 +57,7 @@ module.exports = {
     editArticle: (req,res)=>{
         let id = req.params.id
         article
-        .findOneAndUpdate({user_id:id},{$set:req.body},{upset:true,new:true})
+        .findOneAndUpdate({_id:id},{$set:req.body},{upset:true,new:true})
         .then(data=>{
             res.status(201).json({
                 message: 'update article success',
