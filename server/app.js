@@ -18,6 +18,6 @@ mongoose.connect('mongodb://agnynureza:12345@ds117469.mlab.com:17469/blog-tdd-db
 app.use('/users',users)
 
 
-// app.listen(3000,()=>console.log('server up !'))
+app.listen(3000,()=>console.log('server up !'))
 
 module.exports = app

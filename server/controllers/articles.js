@@ -38,7 +38,6 @@ module.exports = {
         })
     },
     showContent : (req,res)=>{
-        console.log('masuk')
         let id = req.params.id
         article
         .findById({_id:id})
